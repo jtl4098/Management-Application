@@ -40,7 +40,11 @@ namespace ManagementApplication
                 while (!fileInput2.EndOfStream)
                 {
                     line = fileInput2.ReadLine();
-                    lineCount++;
+                    if (lineCount < 101) // maximum length of array is 100
+                    {
+                        lineCount++;
+                    }
+                    
                 }
 
             }
@@ -68,6 +72,7 @@ namespace ManagementApplication
                     String[] parts = line.Split(','); // split a line into a comma[,] to decide the parameter of the object of Employee 
                     employees[lineNumber] = new Employee(parts[0], int.Parse(parts[1]), decimal.Parse(parts[2]), double.Parse(parts[3]));
                     lineNumber++;
+
                 }
                 fileInput.Close();
             }
@@ -184,13 +189,13 @@ namespace ManagementApplication
                             running = false;
                             break;
                         default:
-                            Console.WriteLine("\nInvalid option - please re-enter\n");
+                            Console.WriteLine("\nInvalid option - please re-enter, the range of option (1-7)\n");
                             break;
                     }
                 }
                 catch (FormatException ex)
                 {
-                    Console.WriteLine("\nInvalid Input - Please re-enter\n", ex.Message);
+                    Console.WriteLine("\nInvalid Input - Please re-enter (1-7)\n", ex.Message);
                 }
 
 
