@@ -10,7 +10,79 @@ namespace ManagementApplication
 {
     class Program
     {
-        static void Main(string[] args)
+        static void InsertionSort(Employee[] args, int option)
+        {
+            
+            switch (option) {
+                case 1:
+                    int j = 0;
+                    
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        Employee key = args[i];
+                        for (j = i - 1; j >= 0 && args[j].GetName().CompareTo(key.GetName())>0; j--)
+                        {
+                            args[j + 1] = args[j];
+                        }
+                        args[j + 1] = key;
+                    }
+
+                    break;
+                case 2:
+                    
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        Employee key = args[i];
+                        for (j = i - 1; j >= 0 && args[j].GetNumber() > key.GetNumber(); j--)
+                        {
+                            args[j + 1] = args[j];
+                        }
+                        args[j + 1] = key;
+                    }
+                    break;
+                case 3:
+                    
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        Employee key = args[i];
+                        for (j = i - 1; j >= 0 && args[j].GetRate() < key.GetRate(); j--)
+                        {
+                            args[j + 1] = args[j];
+                        }
+                        args[j + 1] = key;
+                    }
+                    break;
+                case 4:
+
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        Employee key = args[i];
+                        for (j = i - 1; j >= 0 && args[j].GetHours() < key.GetHours(); j--)
+                        {
+                            args[j + 1] = args[j];
+                        }
+                        args[j + 1] = key;
+                    }
+                    break;
+
+                case 5:
+
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        Employee key = args[i];
+                        for (j = i - 1; j >= 0 && args[j].GetGross() < key.GetGross(); j--)
+                        {
+                            args[j + 1] = args[j];
+                        }
+                        args[j + 1] = key;
+                    }
+                    break;
+
+            }
+        }
+
+         
+static void Main(string[] args)
         {
             Console.WriteLine("========================================\n" +
                               "Employees Management Application.\n" +
@@ -105,7 +177,7 @@ namespace ManagementApplication
                                       "7 - Exit\n\n" +
                                       "Enter Option: ");
                     int option = int.Parse(Console.ReadLine());
-
+                    
                     // set variables to use as an index
                     int i = 0;
                     int j = 0;
@@ -120,6 +192,9 @@ namespace ManagementApplication
 
                             break;
                         case 2:
+                            /*
+                             * For remembering algorithm
+                             * Bubble sort                           
                             int n = employees.Length;
                             for (i = 0; i < n - 1; i++)
                                 for (j = 0; j < n - 1 - i; j++)
@@ -129,62 +204,35 @@ namespace ManagementApplication
                                         employees[j + 1] = employees[j];
                                         employees[j] = tempCar;
                                     }
+                             */
+                             
+                            /*
+                             * Insertion Sort
+                            for (i = 1; i < employees.Length; i++)
+                            {
+                                key = employees[i];
+                                for (j = i - 1; j >= 0 && employees[j].GetName().CompareTo(key.GetName()) > 0; j--)
+                                {
+                                    employees[j + 1] = employees[j];
+                                }
+                                employees[j + 1] = key;
+                            }
+
+                        */
+                            InsertionSort(employees, 1);
                             break;
                         case 3:
-                            for (i = 1; i < employees.Length; i++)
-                            {
-                                key = employees[i];
-                                for (j = i - 1; j >= 0 && employees[j].GetNumber() > key.GetNumber(); j--)
-                                {
-                                    employees[j + 1] = employees[j];
-                                }
-                                employees[j + 1] = key;
-                            }
-
+                            InsertionSort(employees, 2);
                             break;
                         case 4:
-
-                            for (i = 1; i < employees.Length; i++)
-                            {
-                                key = employees[i];
-                                for (j = i - 1; j >= 0 && employees[j].GetRate() < key.GetRate(); j--)
-                                {
-                                    employees[j + 1] = employees[j];
-                                }
-                                employees[j + 1] = key;
-                            }
+                            InsertionSort(employees, 3);
                             break;
-
                         case 5:
-
-
-
-                            for (i = 1; i < employees.Length; i++)
-                            {
-                                key = employees[i];
-                                for (j = i - 1; j >= 0 && employees[j].GetHours() < key.GetHours(); j--)
-                                {
-                                    employees[j + 1] = employees[j];
-                                }
-                                employees[j + 1] = key;
-                            }
+                            InsertionSort(employees, 4);
                             break;
                         case 6:
-
-
-                            for (i = 1; i < employees.Length; i++)
-                            {
-                                key = employees[i];
-                                for (j = i - 1; j >= 0 && employees[j].GetGross() < key.GetGross(); j--)
-                                {
-                                    employees[j + 1] = employees[j];
-                                }
-                                employees[j + 1] = key;
-                            }
-
-
+                            InsertionSort(employees, 5);
                             break;
-
                         case 7:
                             running = false;
                             break;

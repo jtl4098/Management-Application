@@ -21,7 +21,10 @@ namespace ManagementApplication
             this.rate = rate;
             this.hours = hours;
             if (hours > 40)
-                gross = (decimal)hours * rate * (decimal)1.5;
+            {
+                decimal remain = (decimal)hours - (decimal)40;
+                gross = ((decimal)40 * rate) + (remain * (rate *(decimal)1.5));
+            }
             else
                 gross = (decimal)hours * rate;
 
@@ -39,7 +42,7 @@ namespace ManagementApplication
             return hours;
         }
 
-        public string GetName()
+        public  string GetName()
         {
             return name;
         }
@@ -57,7 +60,7 @@ namespace ManagementApplication
         public override string ToString()
         {
             return "Name : [ " + name + " ], Number : [ " + number + " ], Pay Rate [ " + rate + " ], Hours [ " + hours +
-                " ], Gross [ " + gross + " ]";
+                " ], Gross [ " + decimal.Round(gross,2) + " ]";
         }
 
         public void SetHours(double hours)
