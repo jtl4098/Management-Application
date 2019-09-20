@@ -5,134 +5,108 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+/// Program : Program
+/// @Author : Taekyung Kil
+/// Date : 18/Sep/2019
+/// Purpose : To set employee management application
+
 namespace ManagementApplication
 
 {
     class Program
     {
-        static void InsertionSort(Employee[] args, int option)
+
+
+        static void InsertionSort(Employee[] arrayName, int option)
         {
-            
-            switch (option) {
-                case 1:
-                    int j = 0;
-                    
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        Employee key = args[i];
-                        for (j = i - 1; j >= 0 && args[j].GetName().CompareTo(key.GetName())>0; j--)
-                        {
-                            args[j + 1] = args[j];
-                        }
-                        args[j + 1] = key;
-                    }
-
-                    break;
-                case 2:
-                    
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        Employee key = args[i];
-                        for (j = i - 1; j >= 0 && args[j].GetNumber() > key.GetNumber(); j--)
-                        {
-                            args[j + 1] = args[j];
-                        }
-                        args[j + 1] = key;
-                    }
-                    break;
-                case 3:
-                    
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        Employee key = args[i];
-                        for (j = i - 1; j >= 0 && args[j].GetRate() < key.GetRate(); j--)
-                        {
-                            args[j + 1] = args[j];
-                        }
-                        args[j + 1] = key;
-                    }
-                    break;
-                case 4:
-
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        Employee key = args[i];
-                        for (j = i - 1; j >= 0 && args[j].GetHours() < key.GetHours(); j--)
-                        {
-                            args[j + 1] = args[j];
-                        }
-                        args[j + 1] = key;
-                    }
-                    break;
-
-                case 5:
-
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        Employee key = args[i];
-                        for (j = i - 1; j >= 0 && args[j].GetGross() < key.GetGross(); j--)
-                        {
-                            args[j + 1] = args[j];
-                        }
-                        args[j + 1] = key;
-                    }
-                    break;
-
-            }
-        }
-
-         
-static void Main(string[] args)
-        {
-            Console.WriteLine("========================================\n" +
-                              "Employees Management Application.\n" +
-                              "========================================\n");
-
-
-            string line = ""; //moved 
-
-            // string line2 = ""; // set a variable to check the line of  
-            int lineNumber = 0;
-
-            int lineCount = 0; // To decide length of list 
-
-
             /*
-             * It is needed to check the number of employees (the number of lines in csv file)
-             * 
+             * Insertion Sort  
+             * Reference
+             * Heejeong Kwon,{ What is the insertion sort }, Retrieved from https://gmlwjd9405.github.io/2018/05/06/algorithm-insertion-sort.html.
+             * the method of purpose is to sort an array
+             * there are five options of sort
              */
-            try
+            switch (option)
             {
-                StreamReader fileInput2 = new StreamReader("employees.csv"); // To read employees.csv file
-                /*
-                 * the lineCount variable is increased one when each line is finished to read
-                 * Therefore, the application is able to know how many lines are in employees.csv file
-                 * And decide length of array(employees)
-                 */
-                while (!fileInput2.EndOfStream)
-                {
-                    line = fileInput2.ReadLine();
-                    if (lineCount < 101) // maximum length of array is 100
+                case 1:  // Sort by name 
+                    int j = 0; // set a variable to use as an index
+
+                    for (int i = 1; i < arrayName.Length; i++) //outer loop
                     {
-                        lineCount++;
+                        Employee key = arrayName[i]; // create temporary object                      
+                        for (j = i - 1; j >= 0 && arrayName[j].GetName().CompareTo(key.GetName()) > 0; j--) // inner loop 
+                        {
+                            arrayName[j + 1] = arrayName[j];
+                        }
+                        arrayName[j + 1] = key;
                     }
+
+                    break;
+                case 2: //Sort by numbers
+
+                    for (int i = 1; i < arrayName.Length; i++) //outer loop
+                    {
+                        Employee key = arrayName[i]; // create temporary object 
+
+                        for (j = i - 1; j >= 0 && arrayName[j].GetNumber() > key.GetNumber(); j--)
+                        {
+                            arrayName[j + 1] = arrayName[j];
+                        }
+                        arrayName[j + 1] = key;
+                    }
+                    break;
+                case 3: // Sort by pay rates
+
+                    for (int i = 1; i < arrayName.Length; i++) //outer loop
+                    {
+                        Employee key = arrayName[i]; // create temporary object 
+                        for (j = i - 1; j >= 0 && arrayName[j].GetRate() < key.GetRate(); j--)
+                        {
+                            arrayName[j + 1] = arrayName[j];
+                        }
+                        arrayName[j + 1] = key;
+                    }
+                    break;
+                case 4: // Sort by hours
+
+                    for (int i = 1; i < arrayName.Length; i++) //outer loop
+                    {
+                        Employee key = arrayName[i]; // create temporary object 
+                        for (j = i - 1; j >= 0 && arrayName[j].GetHours() < key.GetHours(); j--)
+                        {
+                            arrayName[j + 1] = arrayName[j];
+                        }
+                        arrayName[j + 1] = key;
+                    }
+                    break;
+
+                case 5: // Sort by pay gross
+
+                    for (int i = 1; i < arrayName.Length; i++) //outer loop
+                    {
+                        Employee key = arrayName[i];
+                        for (j = i - 1; j >= 0 && arrayName[j].GetGross() < key.GetGross(); j--)
+                        {
+                            arrayName[j + 1] = arrayName[j];
+                        }
+                        arrayName[j + 1] = key;
+                    }
+                    break;
                     
-                }
-
             }
-            catch (FileNotFoundException ex) // error exception. if there is no file or wrong file name, an error message shows up
-            {
-                Console.WriteLine("Could not find file employees.csv" + ex.Message);
-
-            }
-
-            // set employees class of array. the length is decided by lines of the file
-            Employee[] employees = new Employee[lineCount];
-
+            foreach (Employee c in arrayName)  //each object in the array of object
+                Console.WriteLine(c);
+        }
+    
+        static void ReadMethod(Employee[] emp, string path)
+        {
+            int lineNumber = 0;
+            string line = "";
             try
             {
                 // To read employees.csv file
-                StreamReader fileInput = new StreamReader("employees.csv");
+                StreamReader fileInput = new StreamReader(path);
 
                 /*
                  * To read from beginning to end
@@ -142,7 +116,7 @@ static void Main(string[] args)
                 {
                     line = fileInput.ReadLine();
                     String[] parts = line.Split(','); // split a line into a comma[,] to decide the parameter of the object of Employee 
-                    employees[lineNumber] = new Employee(parts[0], int.Parse(parts[1]), decimal.Parse(parts[2]), double.Parse(parts[3]));
+                    emp[lineNumber] = new Employee(parts[0], int.Parse(parts[1]), decimal.Parse(parts[2]), double.Parse(parts[3]));
                     lineNumber++;
 
                 }
@@ -159,6 +133,63 @@ static void Main(string[] args)
                 Console.WriteLine($"Error on Line {lineNumber + 1} reading line {line} - {ex.Message}");
 
             }
+
+        }
+
+        static int AmountOfLines(string path)
+        {
+            string line = ""; //moved 
+            int lineCount = 0; // To decide length of list 
+
+
+            ///It is needed to check the number of employees (the number of lines in csv file)
+            try
+            {
+                StreamReader fileInput2 = new StreamReader(path); // To read employees.csv file
+                /*
+                 * the lineCount variable is increased one when each line is finished to read
+                 * Therefore, the application is able to know how many lines are in employees.csv file
+                 * And decide length of array(employees)
+                 */
+                while (!fileInput2.EndOfStream)
+                {
+                    line = fileInput2.ReadLine();
+                    if (lineCount < 101) // maximum length of array is 100
+                    {
+                        lineCount++;
+                    }
+
+                }
+
+            }
+            catch (FileNotFoundException ex) // error exception. if there is no file or wrong file name, an error message shows up
+            {
+                Console.WriteLine("Could not find file employees.csv" + ex.Message);
+
+            }
+            return lineCount;
+        }
+    
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("========================================\n" +
+                              "Employees Management Application.\n" +
+                              "========================================\n");
+
+
+            
+
+            // set employees class of array. the length is decided by lines of the file
+            // AmountOfLines method is able to decide amount of lines in the file.
+            Employee[] employees = new Employee[AmountOfLines("employees.csv")];
+
+            // Use ReadMethod
+            // there is no return value. the first parameter ,which is emloyees, is added objects by each line of the second parameter's file which is employees.csv
+            ReadMethod(employees,"employees.csv");
+            
+            
             // set boolean variable to finish the application.
             Boolean running = true;
 
@@ -176,72 +207,39 @@ static void Main(string[] args)
                                       "6 - Sort by Employee Gross Pay (descending)\n" +
                                       "7 - Exit\n\n" +
                                       "Enter Option: ");
-                    int option = int.Parse(Console.ReadLine());
-                    
-                    // set variables to use as an index
-                    int i = 0;
-                    int j = 0;
-                    Employee key;
+                    int option = int.Parse(Console.ReadLine()); // set a variable to get user's input
 
-                    switch (option)
+                    switch (option) // decide a case by user's input
                     {
                         case 1:
                             Console.WriteLine("ALL Employees");
-                            foreach (Employee c in employees)
+                            foreach (Employee c in employees)  //each object in the array of object
                                 Console.WriteLine(c);
-
                             break;
                         case 2:
-                            /*
-                             * For remembering algorithm
-                             * Bubble sort                           
-                            int n = employees.Length;
-                            for (i = 0; i < n - 1; i++)
-                                for (j = 0; j < n - 1 - i; j++)
-                                    if (employees[j].GetName().CompareTo(employees[j + 1].GetName()) > 0)
-                                    {
-                                        Employee tempCar = employees[j + 1];
-                                        employees[j + 1] = employees[j];
-                                        employees[j] = tempCar;
-                                    }
-                             */
-                             
-                            /*
-                             * Insertion Sort
-                            for (i = 1; i < employees.Length; i++)
-                            {
-                                key = employees[i];
-                                for (j = i - 1; j >= 0 && employees[j].GetName().CompareTo(key.GetName()) > 0; j--)
-                                {
-                                    employees[j + 1] = employees[j];
-                                }
-                                employees[j + 1] = key;
-                            }
-
-                        */
-                            InsertionSort(employees, 1);
+                            InsertionSort(employees, 1); // use the InsertionSort method to sort by name
                             break;
                         case 3:
-                            InsertionSort(employees, 2);
+                            InsertionSort(employees, 2); // use the InsertionSort method to sort by number
                             break;
                         case 4:
-                            InsertionSort(employees, 3);
+                            InsertionSort(employees, 3); // use the InsertionSort method to sort by pay rate
                             break;
                         case 5:
-                            InsertionSort(employees, 4);
+                            InsertionSort(employees, 4); // use the InsertionSort method to sort by hours
                             break;
                         case 6:
-                            InsertionSort(employees, 5);
+                            InsertionSort(employees, 5); // use the InsertionSort method to sort by gross pay
                             break;
                         case 7:
-                            running = false;
+                            running = false; 
                             break;
-                        default:
+                        default: // set an error for invalid input (out of range)
                             Console.WriteLine("\nInvalid option - please re-enter, the range of option (1-7)\n");
                             break;
                     }
                 }
-                catch (FormatException ex)
+                catch (FormatException ex) // error exception, the user's input has to be valid input (integer 1-7)
                 {
                     Console.WriteLine("\nInvalid Input - Please re-enter (1-7)\n", ex.Message);
                 }
